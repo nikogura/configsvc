@@ -13,8 +13,8 @@ var verbose bool
 // rootCmd represents the base command when called without any subcommands
 var rootCmd = &cobra.Command{
 	Use:   "configsvc",
-	Short: "Serve JSON files over a network",
-	Long:  "Serve JSON files over a network",
+	Short: "Expose static files from kubernetes workloads",
+	Long:  "Expose static files from kubernetes workloads",
 	//Run: func(cmd *cobra.Command, args []string) {
 	//},
 }
