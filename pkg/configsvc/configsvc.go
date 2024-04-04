@@ -6,6 +6,7 @@ import (
 	"github.com/sirupsen/logrus"
 	"net/http"
 	"os"
+	"regexp"
 	"strings"
 )
 
@@ -37,8 +38,15 @@ func MarshalData(path string) (data map[string][]byte, err error) {
 		return data, err
 	}
 
+	dotfile := regexp.MustCompile(`^\..+`)
+
 	// iterate over the files found
 	for _, f := range files {
+		// skip dotfiles
+		if dotfile.MatchString(f.Name()) {
+			continue
+		}
+
 		// read the file
 		filePath := fmt.Sprintf("%s/%s", path, f.Name())
 		logrus.Debugf("Opening %s", filePath)
